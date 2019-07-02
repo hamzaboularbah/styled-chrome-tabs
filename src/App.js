@@ -12,7 +12,6 @@ const Container = styled.div`
 
 `
 const TabBar = styled.ul`
-  width:1000px;
   margin: 0;
   list-style: none;
   background-color: #dfe1e5;
@@ -28,20 +27,26 @@ const Tab = styled.li`
   background-color: #dfe1e5;
   padding: 10px 10px;
   border-radius: 8px 8px 0px 0px;
+  color: #3C4043;
+  text-transform: capitalize;
+  font-family : Arial, Helvetica, sans-serif;
+  font-size: 13px;
+  transition: .1s;
+
   ${props =>
     props.active
       ? css`
-        box-shadow: 0 10px 20px rgba(0,0,0,.5);
+        box-shadow: 0 10px 20px rgba(0,0,0,.2);
         background-color: #FFFFFF;
         z-index: 2;
         &::after, &::before {
           position: absolute;
           content: "";
           background: transparent;
-          width: 15px;
+          width: 23px;
           height: 15px;
           border-radius: 100%;
-          border-width: 10px;
+          border-width: 4px;
           top: 13px;
           border-style: solid;
         }
@@ -58,7 +63,7 @@ const Tab = styled.li`
       `
       : css`
        &:hover {
-        background-color: rgba(169,169,169, 0.1);
+        background-color: rgba(255,255,255, 0.5);
         }
         &::after {
           content: "";
@@ -113,13 +118,13 @@ const CloseTab = styled.div`
 `
 
 let App = () => {
+
   let _tabs = [
     { id: 1, name: 'facebook', active: false },
-    { id: 2, name: 'facebook', active: false },
-    { id: 3, name: 'facebook', active: false },
-    { id: 4, name: 'facebook', active: false },
-    { id: 5, name: 'facebook', active: false }
-
+    { id: 2, name: 'instagram', active: false },
+    { id: 3, name: 'twitter', active: false },
+    { id: 4, name: 'reddit', active: false },
+    { id: 5, name: 'youtube', active: true }
   ]
   let [tabs, setTabs] = useState(_tabs)
 
@@ -128,7 +133,7 @@ let App = () => {
       return item.id > prev ? item.id + 1 : prev + 1
     }, 0)
   }
-  let handleClick = tabID => {
+  let handleClick = (tabID) => {
     setTabs(
       tabs.map(tab =>
         tabID === tab.id
@@ -140,8 +145,14 @@ let App = () => {
   let handleAddTab = () => {
     setTabs([...tabs.map(tab => ({ ...tab, active: false })), { id: generateNewID(), name: 'empty', active: true }])
   }
-  let handleCloseTab = (tabID) => {
-    setTabs(tabs.filter(tab => tab.id !== tabID))
+  let handleCloseTab = tabID => {
+    let setActiveLast = index => {
+      newTabs.map(tab => tab.active = false)
+      newTabs[newTabs.length - 1].active = true
+    }
+    let newTabs = tabs.filter(tab => tab.id !== tabID)
+    tabs.map((tab, index) => tab.id === tabID && tab.active && newTabs.length > 0 ? index === newTabs.length ? setActiveLast(index) : newTabs[index].active = true : '')
+    setTabs(newTabs)
   }
 
   return (
