@@ -19,6 +19,7 @@ const TabBar = styled.ul`
   padding-top: 5px;
   display: flex;
   padding-right:50px;
+  overflow:hidden;
 `
 const Tab = styled.li`
   position: relative;
@@ -90,6 +91,7 @@ const AddTab = styled.div`
     align-self: center;
     margin-left: 30px;
     transition: all 0.4s;
+    cursor: pointer;
     &:hover {
       background-color: rgba(169,169,169, 0.2);
     }
@@ -100,8 +102,9 @@ const TabContent = styled.div`
   align-items:center;
 `
 const TabName = styled.div`
-
+  user-select:none;
 `
+
 const CloseTab = styled.div`
   width:14px;
   height:14px;
@@ -116,9 +119,39 @@ const CloseTab = styled.div`
     background-color: rgba(169,169,169, 0.2);
   }
 `
+const MidWrapper = styled.div`
+  display :flex;
+  align-items:center;
+  margin-top:4px;
+`
+
+const ContorlButtons = styled.div`
+  width:100px;
+   display: flex;
+  flex-direction: row;
+  margin-left:16px;
+  svg {
+    margin-right:20px;
+  }
+`
+const SearchBarContainer = styled.div`
+width:100%
+`
+
+const SearchBar = styled.input`
+width:97%;
+margin-left: 20px;
+border-radius: 14px;
+border: 0;
+background-color: #F1F3F4;
+padding: 7px 0px 6px 11px;
+  &:focus {
+  outline: none;
+}
+
+`
 
 let App = () => {
-
   let _tabs = [
     { id: 1, name: 'facebook', active: false },
     { id: 2, name: 'instagram', active: false },
@@ -176,10 +209,23 @@ let App = () => {
           <AddTab onClick={handleAddTab}>
             <AddTabButton />
           </AddTab>
-
         </TabBar>
+        <MidWrapper>
+          <ContorlButtons>
+            <svg width="13" height="12" xmlns="http://www.w3.org/2000/svg"><path d="M2.46 6.719l4.134 4.028a.721.721 0 0 1 0 1.033l-.007.007a.75.75 0 0 1-1.046 0L.23 6.613a.721.721 0 0 1-.218-.487.735.735 0 0 1 .002-.288.719.719 0 0 1 .215-.45L5.54.212a.75.75 0 0 1 1.047 0l.007.007a.722.722 0 0 1 0 1.033L2.485 5.257h9.784a.73.73 0 0 1 0 1.462H2.461z" fill="#5F6367" fillRule="nonzero" /></svg>
+            <svg width="13" height="12" xmlns="http://www.w3.org/2000/svg"><path d="M10.54 6.719l-4.134 4.028a.721.721 0 0 0 0 1.033l.007.007a.75.75 0 0 0 1.046 0l5.31-5.174a.721.721 0 0 0 .218-.487.735.735 0 0 0-.002-.288.719.719 0 0 0-.215-.45L7.46.212a.75.75 0 0 0-1.047 0L6.406.22a.722.722 0 0 0 0 1.033l4.109 4.004H.73a.73.73 0 0 0 0 1.462h9.808z" fill="#5F6367" fillRule="nonzero" /></svg>
+            <svg width="13" height="13" xmlns="http://www.w3.org/2000/svg"><path d="M13 5.467V0l-2.154 2.213A6.103 6.103 0 0 0 6.264.143C2.805.142 0 3.022 0 6.574 0 10.128 2.805 13 6.264 13c2.613 0 4.851-1.638 5.783-3.977a.819.819 0 0 0 .058-.296c0-.414-.317-.75-.72-.75a.73.73 0 0 0-.654.425c-.02.028-.029.068-.039.097-.73 1.767-2.44 3.01-4.428 3.01-2.652 0-4.804-2.21-4.804-4.934s2.152-4.934 4.804-4.934c1.416 0 2.69.63 3.553 1.627l-2.16 2.22c0-.042 5.343-.021 5.343-.021" fill="#5F6367" fillRule="evenodd" /></svg>
+          </ContorlButtons>
+          <SearchBarContainer>
+            <SearchBar placeholder="Search Google or type a URL" />
+          </SearchBarContainer>
+
+        </MidWrapper>
+
+
       </Container>
-    </div>
+
+    </div >
   )
 }
 
