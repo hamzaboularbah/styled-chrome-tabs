@@ -32,7 +32,6 @@ const Tab = styled.li`
   text-transform: capitalize;
   font-family : Arial, Helvetica, sans-serif;
   font-size: 13px;
-  transition: .1s;
 
   ${props =>
     props.active
@@ -90,7 +89,6 @@ const AddTab = styled.div`
     border-radius: 100%;
     align-self: center;
     margin-left: 30px;
-    transition: all 0.4s;
     cursor: pointer;
     &:hover {
       background-color: rgba(169,169,169, 0.2);
@@ -122,34 +120,52 @@ const CloseTab = styled.div`
 const MidWrapper = styled.div`
   display :flex;
   align-items:center;
+  justify-content:space-between;
   margin-top:4px;
+  div {
+    margin-right:20px;
+  }
+   svg {
+        &:hover {
+          background-color:black;
+          border-radius:100%; 
+          border-width:10px;
+        }
+      }
 `
 
 const ContorlButtons = styled.div`
   width:100px;
-   display: flex;
+  display: flex;
   flex-direction: row;
   margin-left:16px;
   svg {
     margin-right:20px;
+    &:last-child {
+      margin-right:0px;
+    }
   }
 `
 const SearchBarContainer = styled.div`
-width:100%
-`
-
-const SearchBar = styled.input`
-width:97%;
-margin-left: 20px;
-border-radius: 14px;
-border: 0;
-background-color: #F1F3F4;
-padding: 7px 0px 6px 11px;
-  &:focus {
-  outline: none;
+    width:100%;
+    input {
+    width:99%;
+    border-radius: 14px;
+    border: 0;
+    background-color: #F1F3F4;
+    padding: 7px 0px 6px 11px;
+      &:focus {
+      outline: none;
+    }
 }
-
 `
+
+const ProfileImage = styled.div`
+img {
+  border-radius : 100%;
+}
+`
+const SettingButton = styled.div``
 
 let App = () => {
   let _tabs = [
@@ -217,9 +233,14 @@ let App = () => {
             <svg width="13" height="13" xmlns="http://www.w3.org/2000/svg"><path d="M13 5.467V0l-2.154 2.213A6.103 6.103 0 0 0 6.264.143C2.805.142 0 3.022 0 6.574 0 10.128 2.805 13 6.264 13c2.613 0 4.851-1.638 5.783-3.977a.819.819 0 0 0 .058-.296c0-.414-.317-.75-.72-.75a.73.73 0 0 0-.654.425c-.02.028-.029.068-.039.097-.73 1.767-2.44 3.01-4.428 3.01-2.652 0-4.804-2.21-4.804-4.934s2.152-4.934 4.804-4.934c1.416 0 2.69.63 3.553 1.627l-2.16 2.22c0-.042 5.343-.021 5.343-.021" fill="#5F6367" fillRule="evenodd" /></svg>
           </ContorlButtons>
           <SearchBarContainer>
-            <SearchBar placeholder="Search Google or type a URL" />
+            <input placeholder="Search Google or type a URL" />
           </SearchBarContainer>
-
+          <ProfileImage>
+            <img src="https://picsum.photos/id/922/20/20" alt="profile-picture" />
+          </ProfileImage>
+          <SettingButton>
+            <svg width="3" height="13" xmlns="http://www.w3.org/2000/svg"><path d="M1.5 3a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm0 5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm0 5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z" fill="#5F6367" fill-rule="nonzero" /></svg>
+          </SettingButton>
         </MidWrapper>
 
 
